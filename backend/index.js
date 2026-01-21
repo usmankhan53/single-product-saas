@@ -2,8 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userroutes/userRoutes');
-require('dotenv').config();
+const productRoutes = require('./routes/productroutes/productRoutes');
+const orderRoutes = require('./routes/orderroutes/orderRoutes');
+const salesRoutes = require('./routes/salesroutes/salesRoutes');
 
+require('dotenv').config();
 
 // Connect to Database
 connectDB();
@@ -16,8 +19,10 @@ app.use(cors());
 app.use(express.json());
 
 // Routes 
-// User Routes
 app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/sales', salesRoutes);
 
 // Test Route
 app.get('/', (req, res) => {
